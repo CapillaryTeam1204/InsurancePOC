@@ -40,6 +40,7 @@ public class ReadInputData {
 		row = sheet.getRow(rowNo);
 		switch (sheetName) {
 		case "Rating":
+			st.setScenarioNum(row.getCell(col.get("Scenario")).toString());
 			st.setFirstName(row.getCell(col.get("FirstName")).toString());
 			st.setLastName(row.getCell(col.get("LastName")).toString());
 			st.setClientID(row.getCell(col.get("ClientID")).toString());
