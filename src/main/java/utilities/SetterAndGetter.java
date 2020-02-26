@@ -2,10 +2,16 @@ package utilities;
 
 public class SetterAndGetter {
 
-	public String firstName, lastName, clientID, dob, vehPrimaryUse, BI_PerPerson, BI_PerAccident, PD_PerAccident;
+	public String scenarioNum, firstName, lastName, clientID, dob, vehPrimaryUse, BI_PerPerson, BI_PerAccident, PD_PerAccident;
 	public String UMBI_PerPerson, UMBI_PerAccident, medPay, COMP, COLL;
 	public String dummyHeader1,dummyHeader2;
 	
+	public String getScenarioNum() {
+		return scenarioNum;
+	}
+	public void setScenarioNum(String scenarioNum) {
+		this.scenarioNum = scenarioNum;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
