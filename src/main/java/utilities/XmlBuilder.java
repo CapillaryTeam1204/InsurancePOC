@@ -2,6 +2,8 @@ package utilities;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.time.LocalDate;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -11,6 +13,9 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.joda.time.LocalTime;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import utilities.Constants;
@@ -18,22 +23,28 @@ import utilities.ReadInputData;
 import utilities.SetterAndGetter;
 
 public class XmlBuilder {
-	public static final String xmlFilePath = "src" + File.separator + "test" + File.separator + "java" + File.separator + "XMLs" + File.separator + "sample-xml.xml";
+	public static String xmlFilePath = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "InputFiles";
+	
 	public static DocumentBuilderFactory factory;
 	public static DocumentBuilder builder;
 	public static Document doc;
 	public static Element dummyElement;
+	public static Path filePath;
+	public static File file;
 
-	public static void main(String[] args) throws ParserConfigurationException, TransformerException, IOException {		
-		
+	public static void main(String[] args) throws ParserConfigurationException, TransformerException, IOException {
+		String xmlFile="";
 		ReadInputData.openWorkbook();
 		ReadInputData rd= new ReadInputData();
 		SetterAndGetter st = null;
-		try {
-			for (String sheetName:Constants.inputSheets) {
-				st = rd.readSheet(sheetName, 1);
-				System.out.println("getFirstName() -> " +st.getFirstName());
-			}			
+		
+			try {					
+				st = rd.readSheet(Constants.inputSheets[0], row);
+				LocalTime lt = LocalTime.now();				
+				xmlFile = xmlFilePath + File.separator + "sample-xml"+"_" + LocalDate.now()+"-"+lt.getHourOfDay()+"-"+lt.getMinuteOfHour()+"-"+lt.getSecondOfMinute()+"_"+st.getScenarioNum()+".xml";
+				file = new File(xmlFilePath);				
+				file.createNewFile();
+				
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("!!! Sheet name not found in the input workbook !!!");
@@ -49,13 +60,10 @@ public class XmlBuilder {
 
 		dummyElement = createChild("periodStart", "2019-11-07", rootElement);
 		dummyElement = createChild("tracsactionType", "Submission", rootElement);
-		Element personalAutoLine = createChild("periodStart", "", rootElement);
-		dummyElement = createChild("publicID", "pc:1", personalAutoLine);
+		Element personalAutoLine = createChild("periodStart", "", rootElement);		
 		Element personalVehicles = createChild("personalVehicles", "", personalAutoLine);
-
 		createCoverage("One", "Comprehensive", "DeductibleAmount", st.getCOMP(), null, null, null, null, personalVehicles);
 		createCoverage("One", "Collision", "DeductibleAmount", st.getCOLL(), null, null, null, null, personalVehicles);
-
 		dummyElement = createChild("isDssEnrolled", "false", personalVehicles);
 		dummyElement = createChild("totalCustomizationAmount", "0.00", personalVehicles);
 		dummyElement = createChild("primaryUse", st.getVehPrimaryUse(), personalVehicles);
@@ -64,10 +72,7 @@ public class XmlBuilder {
 		dummyElement = createChild("bodyType", "4d 2.5 SL", personalVehicles);
 		dummyElement = createChild("model", "Altima", personalVehicles);
 		dummyElement = createChild("make", "Nissan", personalVehicles);
-		dummyElement = createChild("vehicleSafetyDiscountCode", "D", personalVehicles);
-		dummyElement = createChild("collisionIRGCode", "014", personalVehicles);
-		dummyElement = createChild("comprehensiveIRGCode", "014", personalVehicles);
-		dummyElement = createChild("publicID", "pc:1", personalVehicles);
+		dummyElement = createChild("vehicleSafetyDiscountCode", "D", personalVehicles);		
 		dummyElement = createChild("customVehicleSwitch", "false", personalVehicles);
 		Element vehicleRegisteredOwners = createChild("vehicleRegisteredOwners", "", personalVehicles);
 		dummyElement = createChild("clientIdentifier", "RMGR29FSPYC", vehicleRegisteredOwners);
@@ -83,39 +88,32 @@ public class XmlBuilder {
 		dummyElement = createChild("longitude", "-83.0090", garageLocation);
 		dummyElement = createChild("postalCode", "61704", garageLocation);
 		dummyElement = createChild("state", "IL", garageLocation);
-		dummyElement = createChild("kitCarIndicator", "false", personalVehicles);
-		dummyElement = createChild("transportationNetworkCompanyIndicator", "false", personalVehicles);
-		dummyElement = createChild("transportationIncidentalOccupationDutyIndicator", "false", personalVehicles);
-		dummyElement = createChild("transportationSchoolChurchEmployeeIndicator", "false", personalVehicles);
+		dummyElement = createChild("kitCarIndicator", "false", personalVehicles);		
 		dummyElement = createChild("vehicleTenureDate", "2019-11-07", personalVehicles);
-
 		createCoverage("One", "MedicalPayments", "LimitPerPersonAmount", st.getMedPay(), null, null, null, null,
 				personalAutoLine);
 		createCoverage("Two", "UninsuredBodilyInjury", "LimitPerPersonAmount", st.getUMBI_PerPerson(), "LimitPerAccidentAmount",
 				st.getUMBI_PerAccident(), null, null, personalAutoLine);
 		createCoverage("Three", "BodilyInjuryAndPropertyDamage", "BodilyInjuryLimitPerPersonAmount", st.getBI_PerPerson(),
-				"BodilyInjuryLimitPerAccidentAmount", st.getUMBI_PerAccident(), "PropertyDamageLimitPerAccidentAmount", st.getPD_PerAccident(),
+				"BodilyInjuryLimitPerAccidentAmount", st.getBI_PerAccident(), "PropertyDamageLimitPerAccidentAmount", st.getPD_PerAccident(),
 				personalAutoLine);
-
 		Element policyDrivers = createChild("policyDrivers", "", personalAutoLine);
 		dummyElement = createChild("dateOfBirth", st.getDob(), policyDrivers);
 		dummyElement = createChild("clientIdentifier", st.getClientID(), policyDrivers);
 		dummyElement = createChild("subType", "PolicyDriver", policyDrivers);
 		dummyElement = createChild("firstName", st.getFirstName(), policyDrivers);
-		dummyElement = createChild("lastName", st.getLastName(), policyDrivers);
-		dummyElement = createChild("militaryDriverSwitch", "false", policyDrivers);
-		dummyElement = createChild("militaryFrequentVehicleAccessSwitch", "true", policyDrivers);
+		dummyElement = createChild("lastName", st.getLastName(), policyDrivers);		
 		dummyElement = createChild("gender", "M", policyDrivers);
 		dummyElement = createChild("originalLicenseDate", "2010-01-01", policyDrivers);
-		dummyElement = createChild("licensedType", "US_SF", policyDrivers);
-		dummyElement = createChild("employeeDriverSwitch", "false", policyDrivers);
+		dummyElement = createChild("licensedType", "US", policyDrivers);		
 		dummyElement = createChild("driverTenureStartDate", "2019-11-07", policyDrivers);
 
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = transformerFactory.newTransformer();
 		DOMSource domSOurce = new DOMSource(doc);
-		StreamResult streamResult = new StreamResult(new File(xmlFilePath));
-		transformer.transform(domSOurce, streamResult);		
+		StreamResult streamResult = new StreamResult(xmlFile);
+		transformer.transform(domSOurce, streamResult);			
+		
 	}
 
 	public static Element createChild(String tagName, String tagValue, Element parentNode) {
