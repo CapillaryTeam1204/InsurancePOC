@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<policyPeriod>
+    <periodStart>2019-11-07</periodStart>
+    <tracsactionType>Submission</tracsactionType>
+    <periodStart>
+        <publicID>pc:1</publicID>
+        <personalVehicles>	  
+            <personalCoverages>                
+                <coveragePremiums>
+		    <cvgCode>Comprehensive</cvgCode>
+                    <termName>DeductibleAmount</termName>
+                    <termValue>120.45</termValue>
+                </coveragePremiums>		
+                <coveragePremiums>
+		    <cvgCode>Collision</cvgCode>
+                    <termName>DeductibleAmount</termName>
+                    <termValue>204.55</termValue>
+                </coveragePremiums>
+            </personalCoverages>            
+            <vin>VIN1234567890</vin>
+            <bodyType>4d 2.5 SL</bodyType>
+            <model>Altima</model>
+            <make>Nissan</make>
+            <vehicleSafetyDiscountCode>D</vehicleSafetyDiscountCode>                        
+        </personalVehicles>                
+        <personalCoverages>
+            <patternCode>BodilyInjuryAndPropertyDamage</patternCode>
+            <coveragePremiums>
+                <termName>BodilyInjuryLimitPerPersonAmount</termName>
+                <termValue>253.44</termValue>
+            </coveragePremiums>
+        </personalCoverages>
+        <policyDrivers>
+            <dateOfBirth>1990-01-01</dateOfBirth>
+            <clientIdentifier>RMGR29FSPYC</clientIdentifier>
+            <subType>PolicyDriver</subType>
+            <firstName>TestFirstName</firstName>
+            <lastName>TestLastName</lastName>            
+            <originalLicenseDate>2010-01-01</originalLicenseDate>
+            <licensedType>USOWNER</licensedType>            
+        </policyDrivers>
+    </periodStart>
+</policyPeriod>
