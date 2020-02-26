@@ -21,5 +21,6 @@ public class Constants {
     public static final String NULLSTRING="";
     public static final String STAR_OPERATOR="*";
     public static final String DOT_OPERATOR=".";
-    public static final String[] inputSheets = {"Rating","Dummy1","Dummy2"};
+    public static final String[] inputSheets = {"Rating"};
+    public static String TS_Num="";
 }
