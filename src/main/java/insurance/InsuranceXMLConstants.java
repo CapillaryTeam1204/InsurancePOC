@@ -17,14 +17,14 @@ private HashMap<String,String> columnMapper;
 		columnMapper= new HashMap<String,String>();
 		columnMapper.put("POLICY_PERIOD_START","policyPeriod.periodStart");
 		columnMapper.put("PERSONALCOVERG_VIN", "policyPeriod.periodStart.personalVehicles.vin");
-		columnMapper.put("PERSONALCOVERG_MODEL", "policyPeriod.periodStart.personalVehicles.model");
-		columnMapper.put("PERSONALVEHC_COVERG_COVERGECODE", "policyPeriod.periodStart.personalVehicles.personalCoverages.coveragePremiums.cvgCode");
-		columnMapper.put("PERSONALVEHC_COVERG_TERMVALUE","policyPeriod.periodStart.personalVehicles.personalCoverages.coveragePremiums.termValue");		
-		columnMapper.put("PERSONALVEHC_COVERG_TERMNAME","policyPeriod.periodStart.personalVehicles.personalCoverages.coveragePremiums.termName");
+		columnMapper.put("PERSONALCOVERG_MODEL", "policyPeriod.periodStart.personalVehicles.model");		
+		columnMapper.put("PERSONALVEHC_PREMIUM_AMOUNT","policyPeriod.periodStart.policyPremium.premium");
+	
 		
 		return columnMapper;
-		
-		
+		//columnMapper.put("PERSONALVEHC_COVERG_COVERGECODE", "policyPeriod.periodStart.personalVehicles.personalCoverages.coveragePremiums.cvgCode");
+		//columnMapper.put("PERSONALVEHC_COVERG_TERMVALUE","policyPeriod.periodStart.personalVehicles.personalCoverages.coveragePremiums.termValue");		
+		//columnMapper.put("PERSONALVEHC_COVERG_TERMNAME","policyPeriod.periodStart.personalVehicles.personalCoverages.coveragePremiums.termName");
 		//columnMapper.put("PERSONALCOVERG_TERMVALUE", "policyPeriod.periodStart.personalCoverages.coverageTerms.termValue");
 		//columnMapper.put("PERSONALCOVERG_TERMNAME","policyPeriod.periodStart.personalCoverages.coverageTerms.termName");
 		

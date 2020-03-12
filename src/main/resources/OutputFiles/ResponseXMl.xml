@@ -4,6 +4,9 @@
     <tracsactionType>Submission</tracsactionType>
     <periodStart>
         <publicID>pc:1</publicID>
+	<policyPremium>	  
+            <premium>589.45</premium>
+        </policyPremium>
         <personalVehicles>	  
             <personalCoverages>                
                 <coveragePremiums>
@@ -12,7 +15,7 @@
                     <termValue>120.45</termValue>
                 </coveragePremiums>		
                 <coveragePremiums>
-		    <cvgCode>Collision</cvgCode>
+		          <cvgCode>Collision</cvgCode>
                     <termName>DeductibleAmount</termName>
                     <termValue>204.55</termValue>
                 </coveragePremiums>
@@ -32,7 +35,7 @@
         </personalCoverages>
         <policyDrivers>
             <dateOfBirth>1990-01-01</dateOfBirth>
-            <clientIdentifier>RMGR29FSPYC</clientIdentifier>
+            <clientIdentifier>Client1234</clientIdentifier>
             <subType>PolicyDriver</subType>
             <firstName>TestFirstName</firstName>
             <lastName>TestLastName</lastName>            

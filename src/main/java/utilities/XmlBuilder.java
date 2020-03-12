@@ -32,14 +32,13 @@ public class XmlBuilder {
 	public static Path filePath;
 	public static File file;
 
-	public static void main(String[] args) throws ParserConfigurationException, TransformerException, IOException {
-		String xmlFile="";
-		ReadInputData.openWorkbook();
-		ReadInputData rd= new ReadInputData();
+	public void xmlGenerator() throws ParserConfigurationException, TransformerException, IOException {
+		
+		String xmlFile="";		
 		SetterAndGetter st = null;
 		
 			try {					
-				st = rd.readSheet(Constants.inputSheets[0], row);
+				st = Constants.rd.readSheet(Constants.inputSheets[0], Constants.row);
 				LocalTime lt = LocalTime.now();				
 				xmlFile = xmlFilePath + File.separator + "sample-xml"+"_" + LocalDate.now()+"-"+lt.getHourOfDay()+"-"+lt.getMinuteOfHour()+"-"+lt.getSecondOfMinute()+"_"+st.getScenarioNum()+".xml";
 				file = new File(xmlFilePath);				

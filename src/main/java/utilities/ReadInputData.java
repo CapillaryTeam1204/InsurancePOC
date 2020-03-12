@@ -13,7 +13,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import utilities.SetterAndGetter;
 
 public class ReadInputData {
-	static XSSFWorkbook wrkBook;
+	public static XSSFWorkbook wrkBook;
 	Row row;
 	Map<String, Integer> col;
 	static SetterAndGetter st = new SetterAndGetter();

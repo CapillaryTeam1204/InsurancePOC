@@ -1,6 +1,10 @@
 package utilities;
 
 import java.io.File;
+import java.io.FileOutputStream;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Constants {
 
@@ -23,4 +27,10 @@ public class Constants {
     public static final String DOT_OPERATOR=".";
     public static final String[] inputSheets = {"Rating"};
     public static String TS_Num="";
+    public static int row = 0;
+    public static ReadInputData rd;
+    public static int rowCount=0;
+    public static XSSFWorkbook workbook;
+    public static XSSFSheet sheet;
+    public static FileOutputStream outputFile=null;
 }
